@@ -64,6 +64,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
           
   Deploy-to-Azure:
     runs-on: ubuntu-latest
@@ -80,6 +81,12 @@ jobs:
           login-server: ${{ env.IMAGE_REGISTRY_URL}}
           username: ${{ github.actor }}
           password: ${{ secrets.CR_PAT }}
+
+      - name: Verify Web App
+        run: |
+          az webapp show \
+            --resource-group "cd-with-actions" \
+            --name ${{ env.AZURE_WEBAPP_NAME }}
 
       - name: Deploy web app container
         uses: azure/webapps-deploy@v3

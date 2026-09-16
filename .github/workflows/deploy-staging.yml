@@ -8,6 +8,7 @@ env:
   IMAGE_REGISTRY_URL: ghcr.io
   DOCKER_IMAGE_NAME: kawam1123-azure-ttt
   AZURE_WEBAPP_NAME: kawam1123-ttt-app
+  ## Changed to github username
 
 jobs:
   build:
